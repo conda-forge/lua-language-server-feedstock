@@ -1,16 +1,16 @@
 context:
-  version: 3.14.0
+  version: 3.16.4
 
 package:
   name: lua-language-server
   version: ${{ version }}
 
 source:
-  git: https://github.com/LuaLS/lua-language-server
-  tag: ${{ version }}
+  url: https://github.com/LuaLS/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
+  sha256: d214ef43b593a671c1ab17fbff33fc8abc766fa824eebf190690778432253e1b
 
 build:
-  number: 1
+  number: 0
   script: build.sh
   skip:
     - win
