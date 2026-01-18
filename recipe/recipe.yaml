@@ -1,8 +1,9 @@
 context:
+  name: lua-language-server
   version: 3.16.4
 
 package:
-  name: lua-language-server
+  name: ${{ name }}
   version: ${{ version }}
 
 source:
