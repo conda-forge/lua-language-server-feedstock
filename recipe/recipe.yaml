@@ -1,6 +1,6 @@
 context:
   name: lua-language-server
-  version: 3.16.4
+  version: "3.17.0"
 
 package:
   name: ${{ name }}
@@ -8,7 +8,7 @@ package:
 
 source:
   url: https://github.com/LuaLS/${{ name }}/releases/download/${{ version }}/${{ name }}-${{ version }}-submodules.zip
-  sha256: de8d82d3e368a064190b6c335e77c28bc50446f50cd0c421be4a823d77d0b019
+  sha256: a5d77d6092fe3776c2ca51fc6dd25d1c0e5f407310f78b606e05917ebbd5488c
 
 build:
   number: 0
