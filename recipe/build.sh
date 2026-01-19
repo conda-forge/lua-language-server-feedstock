@@ -3,14 +3,15 @@
 set -o xtrace -o nounset -o pipefail -o errexit
 
 # Create symlinks on Linux because gcc/g++/ar are hardcoded for luamake build
-if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
-  ln -sf ${CC_FOR_BUILD} ${BUILD_PREFIX}/bin/gcc
-  ln -sf ${CXX_FOR_BUILD} ${BUILD_PREFIX}/bin/gxx
-  ln -sf ${BUILD_PREFIX}/bin/${BUILD}-ar ${BUILD_PREFIX}/bin/ar
-elif [[ ${target_platform} =~ .*linux.* ]]; then
-  ln -sf ${CC} ${BUILD_PREFIX}/bin/gcc
-  ln -sf ${CXX} ${BUILD_PREFIX}/bin/gxx
-  ln -sf ${AR} ${BUILD_PREFIX}/bin/ar
+# cf.: https://github.com/actboy168/luamake/blob/master/compile/ninja/linux.ninja
+if [[ ${target_platform} =~ .*linux.* ]]; then
+    if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
+      ln -sf ${BUILD_PREFIX}/bin/${BUILD}-gcc ${BUILD_PREFIX}/bin/gcc
+      ln -sf ${BUILD_PREFIX}/bin/${BUILD}-ar ${BUILD_PREFIX}/bin/ar
+    else
+      ln -sf ${CC} ${BUILD_PREFIX}/bin/gcc
+      ln -sf ${AR} ${BUILD_PREFIX}/bin/ar
+    fi
 fi
 
 pushd 3rd/luamake
