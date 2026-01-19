@@ -3,7 +3,11 @@
 set -o xtrace -o nounset -o pipefail -o errexit
 
 # Create symlinks on Linux because gcc/g++/ar are hardcoded for luamake build
-if [[ ${target_platform} =~ .*linux.* ]]; then
+if [[ "$CONDA_BUILD_CROSS_COMPILATION" == "1" ]]; then
+  ln -sf ${CC_FOR_BUILD} ${BUILD_PREFIX}/bin/gcc
+  ln -sf ${CXX_FOR_BUILD} ${BUILD_PREFIX}/bin/gxx
+  ln -sf ${BUILD_PREFIX}/bin/${BUILD}-ar ${BUILD_PREFIX}/bin/ar
+elif [[ ${target_platform} =~ .*linux.* ]]; then
   ln -sf ${CC} ${BUILD_PREFIX}/bin/gcc
   ln -sf ${CXX} ${BUILD_PREFIX}/bin/gxx
   ln -sf ${AR} ${BUILD_PREFIX}/bin/ar
