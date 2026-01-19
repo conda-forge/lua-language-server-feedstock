@@ -7,8 +7,8 @@ package:
   version: ${{ version }}
 
 source:
-  url: https://github.com/LuaLS/${{ name }}/archive/refs/tags/${{ version }}.tar.gz
-  sha256: d214ef43b593a671c1ab17fbff33fc8abc766fa824eebf190690778432253e1b
+  url: https://github.com/LuaLS/${{ name }}/releases/download/${{ version }}/${{ name }}-${{ version }}-submodules.zip
+  sha256: de8d82d3e368a064190b6c335e77c28bc50446f50cd0c421be4a823d77d0b019
 
 build:
   number: 0
